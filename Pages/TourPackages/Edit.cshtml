@@ -1,0 +1,40 @@
+@page "{id:int}"
+@model TravelAgency.Pages.TourPackages.EditModel
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@{
+    ViewData["Title"] = "Edit Tour Package";
+}
+
+<h1>Edit Tour Package</h1>
+
+<form method="post">
+    <input type="hidden" asp-for="TourPackage.Id" />
+
+    <div class="form-group">
+        <label asp-for="TourPackage.Title">Title</label>
+        <input asp-for="TourPackage.Title" class="form-control" />
+        <span asp-validation-for="TourPackage.Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TourPackage.StartDate">Start Date</label>
+        <input asp-for="TourPackage.StartDate" class="form-control" type="date" />
+        <span asp-validation-for="TourPackage.StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TourPackage.MaxCapacity">Maximum Capacity</label>
+        <input asp-for="TourPackage.MaxCapacity" class="form-control" type="number" />
+        <span asp-validation-for="TourPackage.MaxCapacity" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="TourPackage.Price">Price per Day</label>
+        <input asp-for="TourPackage.Price" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="TourPackage.Price" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-page="Index" class="btn btn-secondary">Cancel</a>
+</form>

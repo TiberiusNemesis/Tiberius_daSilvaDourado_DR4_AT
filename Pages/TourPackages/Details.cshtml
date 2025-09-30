@@ -1,0 +1,31 @@
+@page "{id:int}"
+@model TravelAgency.Pages.TourPackages.DetailsModel
+@{
+    ViewData["Title"] = "Tour Package Details";
+}
+
+<h1>Tour Package Details</h1>
+
+@if (Model.TourPackage != null)
+{
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">@Model.TourPackage.Title</h5>
+            <p class="card-text">
+                <strong>ID:</strong> @Model.TourPackage.Id<br />
+                <strong>Start Date:</strong> @Model.TourPackage.StartDate.ToString("dd/MM/yyyy")<br />
+                <strong>Maximum Capacity:</strong> @Model.TourPackage.MaxCapacity<br />
+                <strong>Price per Day:</strong> @Model.TourPackage.Price.ToString("C")<br />
+                <strong>Number of Bookings:</strong> @(Model.TourPackage.Bookings?.Count ?? 0)
+            </p>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning">
+        Tour package not found.
+    </div>
+}
+
+<a href="/" class="btn btn-secondary">Back</a>

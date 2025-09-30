@@ -1,0 +1,49 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Travel Agency";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Travel Agency</h1>
+    <p>Management system for a travel agency with tour packages, customer registration, bookings, and destination availability control.</p>
+
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Customers</h5>
+                    <p class="card-text">Manage agency customers</p>
+                    <a href="/Customers/Index" class="btn btn-primary">Access</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Bookings</h5>
+                    <p class="card-text">Create new bookings</p>
+                    <a href="/Bookings/CreateBooking" class="btn btn-primary">Access</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Packages</h5>
+                    <p class="card-text">Manage tour packages</p>
+                    <a href="/TourPackages/Index" class="btn btn-primary">Access</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Notes</h5>
+                    <p class="card-text">Notes system</p>
+                    <a href="/Notes/ViewNotes" class="btn btn-primary">Access</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

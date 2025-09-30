@@ -1,0 +1,54 @@
+@page
+@model TravelAgency.Pages.TourPackages.IndexModel
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@{
+    ViewData["Title"] = "Tour Packages";
+}
+
+<h1>Tour Packages List</h1>
+
+<p>
+    <a asp-page="Create" class="btn btn-primary">Create New Package</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Start Date</th>
+            <th>Maximum Capacity</th>
+            <th>Price</th>
+            <th>Bookings</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.TourPackages?.Any() == true)
+        {
+            @foreach (var package in Model.TourPackages)
+            {
+                <tr>
+                    <td>@package.Id</td>
+                    <td>@package.Title</td>
+                    <td>@package.StartDate.ToString("dd/MM/yyyy")</td>
+                    <td>@package.MaxCapacity</td>
+                    <td>@package.Price.ToString("C")</td>
+                    <td>@package.Bookings?.Count</td>
+                    <td>
+                        <a asp-page="Details" asp-route-id="@package.Id" class="btn btn-sm btn-info">Details</a>
+                        <a asp-page="Edit" asp-route-id="@package.Id" class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-page="Delete" asp-route-id="@package.Id" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7" class="text-center">No tour packages found.</td>
+            </tr>
+        }
+    </tbody>
+</table>

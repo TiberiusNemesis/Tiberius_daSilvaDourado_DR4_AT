@@ -1,0 +1,46 @@
+@page
+@model TravelAgency.Pages.Bookings.CreateBookingModel
+@using Microsoft.AspNetCore.Authorization
+@attribute [Authorize]
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<h1>Create New Booking</h1>
+
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-danger">
+        @Model.ErrorMessage
+    </div>
+}
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Booking.CustomerId">Customer ID</label>
+        <input asp-for="Booking.CustomerId" class="form-control" type="number" />
+        <span asp-validation-for="Booking.CustomerId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Booking.TourPackageId">Tour Package ID</label>
+        <input asp-for="Booking.TourPackageId" class="form-control" type="number" />
+        <span asp-validation-for="Booking.TourPackageId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Booking.BookingDate">Booking Date</label>
+        <input asp-for="Booking.BookingDate" class="form-control" type="date" />
+        <span asp-validation-for="Booking.BookingDate" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create Booking</button>
+    <a href="/" class="btn btn-secondary">Cancel</a>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        Please correct the errors in the form.
+    </div>
+}

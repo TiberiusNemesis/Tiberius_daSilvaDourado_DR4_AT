@@ -1,0 +1,70 @@
+@page
+@model TravelAgency.Pages.Notes.ViewNotesModel
+@{
+    ViewData["Title"] = "Notes System";
+}
+
+<h1>Notes System</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Create New Note</h3>
+        <form method="post" asp-page-handler="Create">
+            <div class="form-group">
+                <label for="fileName">File Name</label>
+                <input asp-for="FileName" class="form-control" placeholder="file-name" />
+                <span asp-validation-for="FileName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Content</label>
+                <textarea asp-for="Content" class="form-control" rows="5" placeholder="Enter note content..."></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save Note</button>
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        <h3>Existing Notes</h3>
+        @if (Model.Files?.Any() == true)
+        {
+            <div class="list-group">
+                @foreach (var file in Model.Files)
+                {
+                    <div class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>@file</span>
+                        <form method="post" asp-page-handler="View" style="display: inline;">
+                            <input type="hidden" name="selectedFile" value="@file" />
+                            <button type="submit" class="btn btn-sm btn-outline-info">View</button>
+                        </form>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p class="text-muted">No notes found.</p>
+        }
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(Model.SelectedFileContent))
+{
+    <div class="mt-4">
+        <h3>Content: @Model.SelectedFileName</h3>
+        <div class="card">
+            <div class="card-body">
+                <pre>@Model.SelectedFileContent</pre>
+            </div>
+        </div>
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(Model.Message))
+{
+    <div class="alert alert-success mt-3">
+        @Model.Message
+    </div>
+}
